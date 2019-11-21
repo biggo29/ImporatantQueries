@@ -1,0 +1,6 @@
+# To generate model with certain table
+Scaffold-DbContext "User Id=TB;Password=tb;Data Source=172.16.26.172:1521/testtbl;" Oracle.EntityFrameworkCore -o Models -t "MEMBER","MEMBER_SERVICE","POLICY_SERVICE","MYTB_LAST_UPDATE" -f -ContextDir Context -Context TenderBazarContext
+
+
+
+
