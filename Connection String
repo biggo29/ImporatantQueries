@@ -1,0 +1,4 @@
+//ASP.NET MVC 5
+    <connectionStrings>
+    <add name="CrudContextDemo" connectionString="Server=.;Database=CRUDDemo;user id=sa;password=SqlServer;Trusted_Connection=true;" providerName="System.Data.SqlClient"/>
+  </connectionStrings>
