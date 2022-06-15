@@ -1,0 +1,60 @@
+// Author: Biggo
+// Date: 15-JUN-2022
+// Remove specific multiple words from a string.
+// Use of Regex, Pattern
+// Input: filter for my dyson v6
+// Output: filter dyson v6
+
+using System;
+using System.Text.RegularExpressions;
+
+public class RemoveSpecificWordsFromStringWithRegex
+{
+   public static void Main()
+   {
+      string[] names = { "filter for my dyson v6", 
+						"my filter for dyson v6",
+                        "filter for dyson v6 my", 
+						"filter for a dyson v6", 
+						"filter for no dyson v6", 
+						"filter for any dyson v6" };
+      foreach (string name in names){
+         Console.WriteLine(CleanStopwordsFromSeachTerm(name));
+	  }
+   }
+	
+	 public static string CleanStopwordsFromSeachTerm(string searchTerm)
+        {
+            if (string.IsNullOrWhiteSpace(searchTerm))
+                return searchTerm;
+
+            var result = "";
+
+            string pattern = @"(^|[\s]+)(a|an|and|are|as|at|be|but|by|for|if|in|into|is|it|no|not|of|on|or|s|such|t|that|the|their|then|there|these|they|this|to|was|will|with|any|do|eg|each|spares|parts|spare|part|either|etc|every|everything|except|find|found|from|get|give|had|has|have|he|her|here|i|ie|its|made|many|may|more|most|move|much|my|never|next|nor|nothing|now|nowhere|often|only|onto|our|per|please|put|same|see|seems|seem|seeming|should|since|so|some|something|sometimes|somewhere|than|them|those|though|toward|towards|upon|us|very|via|we|were|when|where|which|while|who|why|without|would|yet|you|your)($|[\s]+)";
+
+            foreach (var word in searchTerm.Split(' '))
+            {
+                //if (word.Contains(pattern))
+                 //   continue;
+				if(Regex.IsMatch(word, pattern))
+					continue;
+                if (word.StartsWith("-"))
+                    result += word.Insert(0, "\\");
+                else if (word.EndsWith("-"))
+                    result += word.Insert(word.Length - 1, "\\");
+                else
+                    result += word;
+
+                result += " ";
+            }
+
+            return result.TrimEnd().Replace("+", @"\+");
+        }
+}
+// The example displays the following output:
+//    filter dyson v6
+//    filter dyson v6
+//    filter dyson v6
+//    filter dyson v6
+//    filter dyson v6
+//    filter dyson v6
